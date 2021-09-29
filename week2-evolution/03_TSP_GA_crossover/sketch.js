@@ -71,8 +71,8 @@ function draw() {
     translate(0, height / 4);
     line(0, 0, width, 0);
     textSize(22);
-
-    text('Version ' + i, 10, 30);
+    let score = round(1000 * bestEver[i]['fitness'], 5)
+    text('Version ' + i + ', Fitness: ' + score, 10, 30);
     bestEver[i].show();
   }
 
