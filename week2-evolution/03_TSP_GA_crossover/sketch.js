@@ -10,18 +10,18 @@ var totalCities = 15;
 
 // Best path overall
 var recordDistance = Infinity;
-var bestEver;
+var bestEver = [];
 
 // Population of possible orders
 var population = [];
 var popTotal = 200;
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(1200, 1200);
 
   // Make random cities
   for (var i = 0; i < totalCities; i++) {
-    var v = createVector(random(10, width - 10), random(10, height / 2 - 10));
+    var v = createVector(random(10, width - 10), random(10, height / 4 - 10));
     cities[i] = v;
   }
 
@@ -29,7 +29,6 @@ function setup() {
   for (var i = 0; i < popTotal; i++) {
     population[i] = new DNA(totalCities);
   }
-
 }
 
 function draw() {
@@ -47,7 +46,7 @@ function draw() {
     // Is this the best ever?
     if (d < recordDistance) {
       recordDistance = d;
-      bestEver = population[i];
+      bestEver.push(population[i]);
     }
 
     // Is this the best this round?
@@ -64,10 +63,19 @@ function draw() {
 
   // Show the best this round
   bestNow.show();
-  translate(0, height / 2);
-  line(0, 0, width, 0);
-  // Show the best ever!
-  bestEver.show();
+
+  let v = bestEver.length - 1
+
+  // Show the best ever! Last three versions
+  for (i = v; i > (v - 3); i--) {
+    translate(0, height / 4);
+    line(0, 0, width, 0);
+    textSize(22);
+
+    text('Version ' + i, 10, 30);
+    bestEver[i].show();
+  }
+
 
   // Map all the fitness values between 0 and 1
   var sum = 0;

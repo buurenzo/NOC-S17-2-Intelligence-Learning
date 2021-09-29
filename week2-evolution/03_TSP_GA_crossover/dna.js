@@ -23,8 +23,9 @@ function DNA(total, order) {
     // Just copy the order
     this.order = order.slice();
     // Mutation
-    // 50% of the time shuffle one spot to see if it improves
-    if (random(1) < 0.05) {
+    // x% of the time shuffle one spot to see if it improves
+    let shuffleprob = 0.05
+    if (random(1) < shuffleprob) {
       this.shuffle();
     }
   } else {
@@ -44,14 +45,14 @@ function DNA(total, order) {
 }
 
 // Shuffle array one time
-DNA.prototype.shuffle = function() {
+DNA.prototype.shuffle = function () {
   var i = floor(random(this.order.length));
   var j = floor(random(this.order.length));
   swap(this.order, i, j);
 }
 
 // How long is this particular path?
-DNA.prototype.calcDistance = function() {
+DNA.prototype.calcDistance = function () {
   var sum = 0;
   for (var i = 0; i < this.order.length - 1; i++) {
     var cityAIndex = this.order[i];
@@ -66,18 +67,18 @@ DNA.prototype.calcDistance = function() {
 }
 
 // Map the fitess where shortest is best, longest is worst
-DNA.prototype.mapFitness = function(minD, maxD) {
+DNA.prototype.mapFitness = function (minD, maxD) {
   this.fitness = map(this.dist, minD, maxD, 1, 0);
   return this.fitness;
 }
 
 // Normalize against total fitness
-DNA.prototype.normalizeFitness = function(total) {
+DNA.prototype.normalizeFitness = function (total) {
   this.fitness /= total;
 }
 
 // Draw the path
-DNA.prototype.show = function() {
+DNA.prototype.show = function () {
 
   // Lines
   stroke(255);
@@ -99,7 +100,7 @@ DNA.prototype.show = function() {
 }
 
 // This is one way to crossover two paths
-DNA.prototype.crossover = function(other) {
+DNA.prototype.crossover = function (other) {
 
   // Grab two orders
   var order1 = this.order;
