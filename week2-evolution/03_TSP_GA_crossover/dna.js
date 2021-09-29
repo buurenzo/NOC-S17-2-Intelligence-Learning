@@ -24,7 +24,7 @@ function DNA(total, order) {
     this.order = order.slice();
     // Mutation
     // x% of the time shuffle one spot to see if it improves
-    let shuffleprob = 0.05
+    let shuffleprob = 0.1
     if (random(1) < shuffleprob) {
       this.shuffle();
     }

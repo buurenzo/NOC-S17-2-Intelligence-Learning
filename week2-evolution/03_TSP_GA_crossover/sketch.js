@@ -14,7 +14,7 @@ var bestEver = [];
 
 // Population of possible orders
 var population = [];
-var popTotal = 200;
+var popTotal = 1000;
 
 function setup() {
   createCanvas(1200, 1200);
