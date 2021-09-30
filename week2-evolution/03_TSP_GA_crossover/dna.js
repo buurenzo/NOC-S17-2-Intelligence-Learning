@@ -24,7 +24,7 @@ function DNA(total, order) {
     this.order = order.slice();
     // Mutation
     // x% of the time shuffle one spot to see if it improves
-    let shuffleprob = 0.1
+    let shuffleprob = 0.4
     if (random(1) < shuffleprob) {
       this.shuffle();
     }
@@ -66,7 +66,7 @@ DNA.prototype.calcDistance = function () {
   return this.dist;
 }
 
-// Map the fitess where shortest is best, longest is worst
+// Map the fitness where shortest is best, longest is worst
 DNA.prototype.mapFitness = function (minD, maxD) {
   this.fitness = map(this.dist, minD, maxD, 1, 0);
   return this.fitness;
