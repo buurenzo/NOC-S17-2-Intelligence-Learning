@@ -14,7 +14,7 @@ var bestEver = [];
 
 // Population of possible orders
 var population = [];
-var popTotal = 1000;
+var popTotal = 10000;
 
 function setup() {
   createCanvas(1200, 1200);
@@ -66,7 +66,8 @@ function draw() {
 
   let v = bestEver.length - 1
 
-  // Show the best ever! Last three versions
+  // Show the best ever! Last three versions with fitness score (multiplied by 1000) and
+  // total calculated distance.
   for (i = v; i > (v - 3); i--) {
     translate(0, height / 4);
     line(0, 0, width, 0);
